@@ -1,20 +1,26 @@
+import sys
 from src.wattpad_scraper import WattpadScraper
 from src.pdf_converter import PDFConverter
 
 def main():
-    url = input("Enter the URL of the book on Wattpad: ")
-    
-    # Instantiate the class to extract content
+    # Check if a URL is provided as a command-line argument; otherwise, prompt the user.
+    if len(sys.argv) > 1:
+        url = sys.argv[1]
+    else:
+        url = input("Enter the URL of the book on Wattpad: ")
+
+    # Instantiate the scraper to extract content
     scraper = WattpadScraper(url)
     content = scraper.get_book_content()
     
     if content:
-        # Specify the path to wkhtmltopdf
+        # Specify the path to wkhtmltopdf (ensure the correct executable path and extension)
         wkhtmltopdf_path = r"D:\wkhtmltox\bin\wkhtmltopdf.exe"
         
-        # Instantiate the class to convert content to PDF, passing the wkhtmltopdf path
+        # Instantiate the PDF converter, passing the wkhtmltopdf path
         converter = PDFConverter(wkhtmltopdf_path)
         output_file = "book.pdf"
+        
         # Convert the text to PDF
         converter.convert_text_to_pdf(content, output_file)
     else:
