@@ -10,7 +10,7 @@ def main():
     
     if content:
         # Specify the path to wkhtmltopdf
-        wkhtmltopdf_path = r"E:\wkhtmltox-0.12.6-1.mxe-cross-win64\wkhtmltox\bin\wkhtmltopdf.exe"
+        wkhtmltopdf_path = r"D:\wkhtmltox\bin\wkhtmltopdf.exe"
         
         # Instantiate the class to convert content to PDF, passing the wkhtmltopdf path
         converter = PDFConverter(wkhtmltopdf_path)
